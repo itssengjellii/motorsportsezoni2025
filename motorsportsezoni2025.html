@@ -1,0 +1,303 @@
+<html lang="sq"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sezoni 2025 – Formula 1 &amp; MotoGP</title>
+  <meta name="description" content="Këtu është përmbledhja, kalendari dhe galeria për sezonin 2025 të Formula 1 dhe MotoGP, me dizajn modern dhe animacione.">
+  <style>
+    /* Reset & vars */
+    :root{
+      --bg:#0b1020; --card:#0f1624; --muted:#9aa7c7; --text:#e7eef8; --accent-f1:#ff2b2b; --accent-moto:#2bb7ff; --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.04);
+      --glass-3: rgba(0,0,0,0.45);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial; background:linear-gradient(180deg,#071020 10%, #0b1320 60%); color:var(--text); -webkit-font-smoothing:antialiased;}
+
+    /* Loading */
+    #loader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,rgba(11,16,28,.95),rgba(3,6,10,.95));z-index:9999;flex-direction:column}
+    .spinner{width:72px;height:72px;border-radius:50%;border:6px solid rgba(255,255,255,.08);border-top-color:var(--accent-f1);animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    #loader small{margin-top:12px;color:var(--muted)}
+
+    /* Layout */
+    header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(10,12,18,.6),rgba(8,10,14,.4));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+    .wrap{max-width:1200px;margin:0 auto;padding:18px}
+    .nav{display:flex;align-items:center;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent-f1),var(--accent-moto));display:flex;align-items:center;justify-content:center;font-weight:800;color:#061020}
+    nav a{color:var(--text);text-decoration:none;padding:8px 12px;border-radius:10px;transition:all .22s}
+    nav a:hover{transform:translateY(-2px);background:var(--glass)}
+    .spacer{flex:1}
+    .controls{display:flex;gap:8px;align-items:center}
+    .btn{background:var(--glass);border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:10px;color:var(--text);cursor:pointer}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:60px 0}
+    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);padding:28px;border-radius:16px;box-shadow:0 10px 30px rgba(2,6,12,0.6)}
+    h1{font-size:34px;margin:0 0 8px}
+    p.lead{color:var(--muted);margin:0 0 16px}
+    .badges{display:flex;gap:8px;flex-wrap:wrap}
+    .badge{background:var(--glass-2);padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);font-weight:600}
+
+    /* Cards grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);transition:transform .32s, box-shadow .32s}
+    .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(2,6,12,0.6)}
+
+    /* Calendar */
+    .calendar{margin-top:30px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    table{width:100%;border-collapse:collapse;color:var(--text)}
+    th,td{padding:10px 8px;text-align:left;border-bottom:1px dashed rgba(255,255,255,0.03)}
+    th{color:var(--muted);font-weight:700}
+    .flag{font-size:18px;margin-right:8px}
+    .f1{color:var(--accent-f1);font-weight:700}
+    .moto{color:var(--accent-moto);font-weight:700}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+    .media{position:relative;border-radius:12px;overflow:hidden}
+    .media img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .4s ease}
+    .media:hover img{transform:scale(1.06)}
+    .caption{position:absolute;left:12px;bottom:12px;background:linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.2));padding:8px 12px;border-radius:10px;font-weight:700}
+
+    /* FAQ */
+    .faq{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+    details{background:var(--glass);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+
+    /* Footer */
+    footer{margin-top:40px;padding:30px 0;text-align:center;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:980px){.hero{grid-template-columns:1fr;}.grid{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.grid{grid-template-columns:1fr}.gallery{grid-template-columns:1fr}.hero{padding:28px 0}}
+
+    /* small interactive animations */
+    .pulse{animation:pulse 2s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,0.06)}70%{box-shadow:0 0 0 14px rgba(255,255,255,0.00)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+
+    /* Floating quick nav */
+    .quick{position:fixed;right:20px;bottom:20px;background:linear-gradient(135deg,var(--accent-f1),var(--accent-moto));padding:12px;border-radius:999px;box-shadow:0 12px 30px rgba(2,6,12,0.6);cursor:pointer}
+
+  </style>
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div id="loader" style="opacity: 0; display: none;">
+    <div class="spinner"></div>
+    <small>Po ngarkohet faqja… Faleminderit për durimin ❤️</small>
+  </div>
+
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="logo">25</div>
+        <div>
+          <div style="font-size:14px;opacity:.9">Sezoni 2025</div>
+          <div style="font-size:12px;color:var(--muted)">Formula 1 &amp; MotoGP – Përmbledhje</div>
+        </div>
+      </div>
+      <nav style="margin-left:18px">
+        <a href="#f1">F1</a>
+        <a href="#motogp">MotoGP</a>
+        <a href="#calendar">Kalendari</a>
+        <a href="#galeria">Galeria</a>
+      </nav>
+      <div class="spacer"></div>
+      <div class="controls">
+        <button class="btn" id="themeBtn" title="Ndrysho temën">Dark/Light</button>
+        <button class="btn" id="downloadBtn" title="Shkarko HTML">Shkarko</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" style="transform: none; opacity: 1;">
+      <div class="hero-card">
+        <h1>Dy botët e shpejtësisë: Formula 1 &amp; MotoGP</h1>
+        <p class="lead">Sezoni 2025 sjell një orvatje të re rivaliteti, teknologjie dhe spektakli. Këtu ke kalendarin, galerinë dhe pika kryesore të çdo kampionati — të gjitha me animacione dhe dizajn modern.</p>
+        <div class="badges">
+          <div class="badge">24 gara • F1</div>
+          <div class="badge">22 gara • MotoGP</div>
+          <div class="badge">Sprint Weekends</div>
+          <div class="badge">5 kontinente</div>
+        </div>
+
+        <div class="grid" style="margin-top:18px">
+          <div class="card">
+            <h4>Inovacion — F1</h4>
+            <p style="color:var(--muted);margin:8px 0 0">Aerodinamika, hibridizimi i motorëve dhe strategjitë e pit-stop do të vendosin shumë gara.</p>
+          </div>
+          <div class="card">
+            <h4>Guxim — MotoGP</h4>
+            <p style="color:var(--muted);margin:8px 0 0">Pilotët sfidojnë limitet e fizikës në çdo kthesë — emocion në dy rrota.</p>
+          </div>
+          <div class="card">
+            <h4>Spektakël Global</h4>
+            <p style="color:var(--muted);margin:8px 0 0">Nga Melbourne në Valencia — një udhëtim me miliona tifozë dhe histori të reja.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="hero-card pulse">
+          <h3 style="margin:0">Kalendarët Zyrtarë 2025</h3>
+          <p style="margin:6px 0 0;color:var(--muted)">F1: 14–16 Mars (Melbourne) → 5–7 Dhjetor (Abu Dhabi). MotoGP: 2–5 Mars (Tajlandë) → 14–16 Nëntor (Valencia).</p>
+        </div>
+        <div class="hero-card">
+          <h4 style="margin:0">Promo</h4>
+          <p style="margin:8px 0 0;color:var(--muted)">Shkarko kalendarin ose ruaje si PDF (opsional) — gjithçka këtu është e përditësueshme.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- F1 -->
+    <section id="f1" style="transform: translateY(30px); opacity: 0.08;">
+      <h2>Formula 1 – Sezoni 2025 <span style="color:var(--muted);font-size:14px;display:block">24 gara, përfshin 6 sprint</span></h2>
+      <div class="calendar">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Vend</th><th>Data</th><th>Veçori</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>🇦🇺 Australia (Melbourne)</td><td>14–16 Mars</td><td>Hapja e sezonit</td></tr>
+            <tr><td>2</td><td>🇨🇳 Kina</td><td>Mars/Prill</td><td>Çelësi i pistave urbane</td></tr>
+            <tr><td>3</td><td>🇯🇵 Japonia</td><td>Prill</td><td>Shpejtësi + teknologji</td></tr>
+            <tr><td>4</td><td>🇧🇭 Bahrain</td><td>Prill</td><td>Garë nate</td></tr>
+            <tr><td>5</td><td>🇸🇦 Arabia Saudite</td><td>Prill</td><td>Ndryshime për Ramazan</td></tr>
+            <tr><td>6</td><td>🇺🇸 Miami (Sprint)</td><td>Maj</td><td>Sprint Weekend</td></tr>
+            <tr><td>7</td><td>🇮🇹 Imola</td><td>Maj</td><td>Pista historike</td></tr>
+            <tr><td>8</td><td>🇲🇨 Monaco</td><td>Maj</td><td>Klasiike</td></tr>
+            <tr><td>9</td><td>🇪🇸 Barcelona</td><td>Qershor</td><td>Test &amp; ngasje</td></tr>
+            <tr><td>10</td><td>🇨🇦 Kanada</td><td>Qershor</td><td>Parakalime</td></tr>
+            <tr><td>11</td><td>🇦🇹 Austri</td><td>Korrik</td><td>Pista teknike</td></tr>
+            <tr><td>12</td><td>🇬🇧 Britania</td><td>Korrik</td><td>Silverstone</td></tr>
+            <tr><td>13</td><td>🇧🇪 Belgjikë (Sprint)</td><td>Korrik/Gusht</td><td>Sprint + ndryshim moti</td></tr>
+            <tr><td>14</td><td>🇭🇺 Hungari</td><td>Gusht</td><td>Teknik</td></tr>
+            <tr><td>15</td><td>🇳🇱 Holandë</td><td>Gusht</td><td>Assen/NG</td></tr>
+            <tr><td>16</td><td>🇮🇹 Monza</td><td>Shtator</td><td>Shpejtësi maksimale</td></tr>
+            <tr><td>17</td><td>🇦🇿 Baku</td><td>Shtator</td><td>Pista urbane</td></tr>
+            <tr><td>18</td><td>🇸🇬 Singapor</td><td>Shtator</td><td>Garë nate</td></tr>
+            <tr><td>19</td><td>🇺🇸 SHBA (Austin – Sprint)</td><td>Tetor</td><td>Sprint Weekend</td></tr>
+            <tr><td>20</td><td>🇲🇽 Meksikë</td><td>Tetor</td><td>Altitudë &amp; tifozë</td></tr>
+            <tr><td>21</td><td>🇧🇷 Brazil (Sprint)</td><td>Tetor</td><td>Sprint Weekend</td></tr>
+            <tr><td>22</td><td>🇺🇸 Las Vegas</td><td>Nëntor</td><td>Pista urbane &amp; show</td></tr>
+            <tr><td>23</td><td>🇶🇦 Katar (Sprint)</td><td>Nëntor</td><td>Sprint + naten</td></tr>
+            <tr><td>24</td><td>🇦🇪 Abu Dhabi</td><td>5–7 Dhjetor</td><td>Finale</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MotoGP -->
+    <section id="motogp" style="transform: translateY(30px); opacity: 0.08;">
+      <h2>MotoGP – Sezoni 2025 <span style="color:var(--muted);font-size:14px;display:block">22 gara në 18 vende</span></h2>
+      <div class="calendar">
+        <table>
+          <thead><tr><th>#</th><th>Vend</th><th>Data</th><th>Veçori</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>🇹🇭 Tajlandë (Buriram)</td><td>2–5 Mars</td><td>Hapja e sezonit</td></tr>
+            <tr><td>2</td><td>🇦🇷 Argjentinë (Termas)</td><td>Mars/Prill</td><td>Traditë e garave</td></tr>
+            <tr><td>3</td><td>🇺🇸 Amerika (Austin)</td><td>Prill</td><td>Teknikë &amp; drejtim</td></tr>
+            <tr><td>4</td><td>🇶🇦 Katar</td><td>Prill</td><td>Garë nate</td></tr>
+            <tr><td>5</td><td>🇪🇸 Spanjë (Jerez)</td><td>Maj</td><td>Shumë tifozë</td></tr>
+            <tr><td>6</td><td>🇫🇷 Francë (Le Mans)</td><td>Maj</td><td>Pista klasike</td></tr>
+            <tr><td>7</td><td>🇬🇧 Britani (Silverstone)</td><td>Qershor</td><td>Shpejtësi</td></tr>
+            <tr><td>8</td><td>🇪🇸 Aragon</td><td>Qershor</td><td>Kthesa teknike</td></tr>
+            <tr><td>9</td><td>🇮🇹 Mugello</td><td>Qershor</td><td>Panoramë &amp; shpejtësi</td></tr>
+            <tr><td>10</td><td>🇳🇱 Assen</td><td>Qershor</td><td>Katedralja e MotoGP</td></tr>
+            <tr><td>11</td><td>🇩🇪 Sachsenring</td><td>Korrik</td><td>Kthesa të ngushta</td></tr>
+            <tr><td>12</td><td>🇨🇿 Brno</td><td>Korrik</td><td>Kthimi i pistës</td></tr>
+            <tr><td>13</td><td>🇦🇹 Spielberg</td><td>Korrik</td><td>Shpejtësi &amp; teknicitet</td></tr>
+            <tr><td>14</td><td>🇭🇺 Hungari (Balaton Park)</td><td>Korrik</td><td>Pikë e re</td></tr>
+            <tr><td>15</td><td>🇪🇸 Barcelona (Catalunya)</td><td>Gusht</td><td>Stil &amp; ritëm</td></tr>
+            <tr><td>16</td><td>🇸🇲 San Marino (Misano)</td><td>Gusht</td><td>Favoriti i tifozëve</td></tr>
+            <tr><td>17</td><td>🇯🇵 Motegi</td><td>Shtator</td><td>Teknikë</td></tr>
+            <tr><td>18</td><td>🇮🇩 Mandalika</td><td>Shtator</td><td>Indonezia</td></tr>
+            <tr><td>19</td><td>🇦🇺 Phillip Island</td><td>Tetor</td><td>Epike &amp; shpejtësi</td></tr>
+            <tr><td>20</td><td>🇲🇾 Sepang</td><td>Tetor</td><td>Kushtet tropikale</td></tr>
+            <tr><td>21</td><td>🇵🇹 Algarve</td><td>Nëntor</td><td>Trajektori &amp; ritëm</td></tr>
+            <tr><td>22</td><td>🇪🇸 Valencia</td><td>14–16 Nëntor</td><td>Finale tradicionale</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="galeria" style="transform: translateY(30px); opacity: 0.08;">
+      <h2>Galeria</h2>
+      <div class="gallery">
+        <div class="media"><img src="https://www.formula1.com/trackside-images/2025/Formula_1_Testing_in_Bahrain___Day_3/2202490999.jpg" jsaction="" class="">Ferrari në aksion</div></div>
+        <div class="media"><img src="https://motorsportmagazine.b-cdn.net/wp-content/uploads/2025/02/2025-F1-drivers-photoshoot.jpg" jsaction="" class="">Pilotët e F1</div>
+        <div class="media"><img src="https://news.lenovo.com/wp-content/uploads/2024/09/2024-bike-scaled-e1726651284715-1024x843.jpg" jsaction="" class="&gt;Ducati / MotoGP&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=" media"=""><img src="https://ichef.bbci.co.uk/ace/standard/3840/cpsprodpb/2221/live/b06993d0-7b73-11f0-8b0c-831af2dbcc02.jpg" jsaction="" class="">Pilot i MotoGP</div>
+        <div class="media"><img src="https://photos.motogp.com/2025/events/background/19%20australia.png" jsaction="" class="&gt;Start i garës&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=" media"=""><img src="https://media.formula1.com/image/upload/c_lfill,w_3392/q_auto/v1740000000/content/dam/fom-website/sutton/2022/Netherlands/Sunday/1420789661.webp" jsaction="" class="&gt;Pit stop&lt;/div&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- FAQ --&gt;
+    &lt;section&gt;
+      &lt;h2&gt;FAQ&lt;/h2&gt;
+      &lt;div class=" faq"="">
+        <details open="">
+          <summary>Si të përdor këtë faqe?</summary>
+          <p>Shfletimi: përdor menunë sipër për të shkuar direkt te secili seksion. Galeria dhe kalendari janë interaktive.</p>
+        </details>
+        <details open="">
+          <summary>A janë datat zyrtare?</summary>
+          <p>Po — ky është përmbledhja zyrtare, por datat mund të ndryshojnë nga promotorët. Kontrollo burimet për konfirmim.</p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <button class="quick" title="Kalendari">📅</button>
+
+  <footer>
+    <div class="wrap">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <small>© 2025 Sezoni Formula 1 &amp; MotoGP • Ndërtuar nga Engjell Ibrahimi</small>
+        <small style="color:var(--muted)">Burimet: Formula1.com, MotoGP.com, Motorsport &amp; Wikipedia</small>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Loader
+    window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').style.opacity='0';setTimeout(()=>document.getElementById('loader').style.display='none',400);},700)})
+
+    // Theme toggle
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.addEventListener('click',()=>{
+      if(document.documentElement.style.getPropertyValue('--bg')===''){
+        document.documentElement.style.setProperty('--bg','#f5f7fb');
+        document.documentElement.style.setProperty('--text','#081124');
+        document.body.style.background = 'linear-gradient(180deg,#f5f7fb 10%, #e9eef8 60%)';
+      } else {
+        document.documentElement.style.setProperty('--bg','#0b1020');
+        document.documentElement.style.setProperty('--text','#e7eef8');
+        document.body.style.background = 'linear-gradient(180deg,#071020 10%, #0b1320 60%)';
+      }
+    })
+
+    // Quick button scroll to calendar
+    document.querySelector('.quick').addEventListener('click',()=>{document.getElementById('calendar')?.scrollIntoView({behavior:'smooth'});document.getElementById('calendar')?.classList.add('pulse');setTimeout(()=>document.getElementById('calendar')?.classList.remove('pulse'),1200)})
+
+    // Download HTML
+    document.getElementById('downloadBtn').addEventListener('click',()=>{
+      const blob = new Blob([document.documentElement.outerHTML],{type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download='sezoni-2025.html'; a.click(); URL.revokeObjectURL(url);
+    })
+
+    // Small reveal on scroll
+    const reveal = ()=>{document.querySelectorAll('section').forEach(s=>{const r=s.getBoundingClientRect();if(r.top<window.innerHeight-80){s.style.transform='none';s.style.opacity=1}else{s.style.transform='translateY(30px)';s.style.opacity=0.08}})};
+    document.addEventListener('scroll',reveal); reveal();
+  </script>
+
+
+</body></html>
